@@ -1,17 +1,23 @@
 import express from "express";
-import dotenv from "dotenv"
+import dotenv from "dotenv";
+import cors from "cors"
 import mongoose from "mongoose";
 
-
-const app = express()
+const app = express();
 dotenv.config();
-app.use(express.json())
+app.use(express.json());
+app.use(cors());
 
-app.get("/", (req, res) => {
-  res.send("This is home page")
+mongoose.connect(process.env.MONGO_URI).then(() => {
+  console.log("App connected to database");
+  app.listen(process.env.PORT || 3001, () => {
+    console.log(`App is listening to port: ${process.env.PORT}`);
+  });
+}).catch((error) => {
+  console.log(error);
 })
 
-
-app.listen(process.env.PORT || 3000, () => {
-  console.log(`App is listening to port: ${process.env.PORT}`);
+app.get("/", (req, res) => {
+  res.send("This is home page");
 });
+
