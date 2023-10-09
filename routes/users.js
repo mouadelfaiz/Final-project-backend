@@ -35,7 +35,8 @@ if (!isPasswordValid) {
   return res.json({message: "User or Password Is Incorrect!"})
 }
 
-const token = jwt.
+const token = jwt.sign({id: user._id}, "secret")
+res.json({token, userID: user._id})
 })
 
 export {router as userRouter}
