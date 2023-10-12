@@ -8,3 +8,4 @@ A fullstack Project Management Software made using React JS (JavaScript), Node J
 * JWT tokens
 * Mongo DB
 * Mongooose
+* OpenWeather API
