@@ -4,6 +4,7 @@ import cors from "cors"
 import mongoose from "mongoose";
 
 import {userRouter} from "./routes/users.js"
+import {projectsRouter} from "./routes/projects.js"
 
 const app = express();
 dotenv.config();
@@ -11,6 +12,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/auth", userRouter)
+app.use("/projects", projectsRouter)
 
 mongoose.connect(process.env.MONGO_URI).then(() => {
   console.log("App connected to database");
@@ -20,8 +22,3 @@ mongoose.connect(process.env.MONGO_URI).then(() => {
 }).catch((error) => {
   console.log(error);
 })
-
-app.get("/", (req, res) => {
-  res.send("This is home page");
-});
-
